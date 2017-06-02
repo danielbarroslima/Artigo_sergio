@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+//using MySql.Data.MySqlClient;
 
 namespace Artigos
 {
@@ -16,7 +16,7 @@ namespace Artigos
     {
         public bool logado = false;
         private Conexao conn;
-        public static MySqlConnection ConnectOpen;
+        public static SqlConnection ConnectOpen;
         public static int perfilUsuario;
 
         public Login()
@@ -32,12 +32,12 @@ namespace Artigos
         {
             string strCommand = "Select * from usuarios where usuario = '" + txtUsuario.Text + "' and " + "Senha = '" + txtSenha.Text + "'";
             DataTable dt = new DataTable();
-            //MySqlDataAdapter da = new MySqlDataAdapter(strCommand, ConnectOpen);
+            SqlDataAdapter da = new SqlDataAdapter(strCommand, ConnectOpen);
             //da.Fill(dt);
 
 
             var _conn = ConnectOpen;
-            var _cmd = new MySqlCommand
+            var _cmd = new SqlCommand
             {
                 Connection = _conn,
                 CommandText = strCommand
@@ -45,7 +45,7 @@ namespace Artigos
 
             _cmd.ExecuteNonQuery();
 
-            MySqlDataAdapter _da = new MySqlDataAdapter(_cmd);
+            SqlDataAdapter _da = new SqlDataAdapter(_cmd);
 
             _da.Fill(dt);
 

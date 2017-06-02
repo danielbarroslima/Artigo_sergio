@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+//using MySql.Data.MySqlClient;
 
 namespace Artigos
 {
@@ -27,7 +27,7 @@ namespace Artigos
             //Buscar todos usuários cadastrados
             string sql = "Select * from usuarios ";
             DataTable dt = new DataTable();
-            MySqlDataAdapter da = new MySqlDataAdapter(sql, conn);
+            SqlDataAdapter da = new SqlDataAdapter(sql, conn);
             da.Fill(dt);
             
             if(dt.Rows.Count > 0)

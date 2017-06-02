@@ -3,7 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+//using MySql.Data.MySqlClient;
 
 
 namespace Artigos
@@ -12,7 +12,7 @@ namespace Artigos
     {
         public bool logado = false;
         private Conexao conn;
-        private MySqlConnection ConnectOpen;
+        private SqlConnection ConnectOpen;
 
         public Cadastrar()
         {
@@ -33,7 +33,7 @@ namespace Artigos
                 sql.Append(" perfil = @perfil "); //Não esqueçam de dar um espaço no final 
                 sql.Append(" where usuario = @usuario");
 
-                MySqlCommand command = null;
+                SqlCommand command = null;
                 int perfilSeleted = 0;
                 switch (cmbPerfil.Text)
                 {
@@ -51,10 +51,10 @@ namespace Artigos
                         break;
                 }
 
-                command = new MySqlCommand(sql.ToString(), ConnectOpen);
-                command.Parameters.Add(new MySqlParameter("@senha", txtSenha.Text));
-                command.Parameters.Add(new MySqlParameter("@perfil", perfilSeleted));
-                command.Parameters.Add(new MySqlParameter("@usuario", txtUsuario.Text));
+                command = new SqlCommand(sql.ToString(), ConnectOpen);
+                command.Parameters.Add(new SqlParameter("@senha", txtSenha.Text));
+                command.Parameters.Add(new SqlParameter("@perfil", perfilSeleted));
+                command.Parameters.Add(new SqlParameter("@usuario", txtUsuario.Text));
                 command.ExecuteNonQuery();
 
                 MessageBox.Show("Alterado com sucesso!");
@@ -66,7 +66,7 @@ namespace Artigos
                 StringBuilder sql = new StringBuilder();
                 sql.Append("Insert into usuarios(Usuario, senha, perfil) ");
                 sql.Append("Values (@usuario, @senha, @perfil)");
-                MySqlCommand command = null;
+                SqlCommand command = null;
 
                 int perfilSeleted = 0;
                 switch (cmbPerfil.Text)
@@ -87,10 +87,10 @@ namespace Artigos
 
                 try
                 {
-                    command = new MySqlCommand(sql.ToString(), ConnectOpen);
-                    command.Parameters.Add(new MySqlParameter("@usuario", txtUsuario.Text));
-                    command.Parameters.Add(new MySqlParameter("@senha", txtSenha.Text));
-                    command.Parameters.Add(new MySqlParameter("@perfil", perfilSeleted));
+                    command = new SqlCommand(sql.ToString(), ConnectOpen);
+                    command.Parameters.Add(new SqlParameter("@usuario", txtUsuario.Text));
+                    command.Parameters.Add(new SqlParameter("@senha", txtSenha.Text));
+                    command.Parameters.Add(new SqlParameter("@perfil", perfilSeleted));
                     command.ExecuteNonQuery();
 
                     MessageBox.Show("Cadastrado com sucesso!");
@@ -130,7 +130,7 @@ namespace Artigos
 
 
             DataTable dt = new DataTable();
-            MySqlDataAdapter da = new MySqlDataAdapter(sql, conn);
+            SqlDataAdapter da = new SqlDataAdapter(sql, conn);
             da.Fill(dt);
 
             //Linha 0, coluna 0
@@ -192,9 +192,9 @@ namespace Artigos
             //Buscar usuário selecionado
             string sql = "Delete from usuarios where Usuario = @usuario";
 
-            MySqlCommand command = null;
-            command = new MySqlCommand(sql.ToString(), ConnectOpen);
-            command.Parameters.Add(new MySqlParameter("@usuario", txtUsuario.Text));
+            SqlCommand command = null;
+            command = new SqlCommand(sql.ToString(), ConnectOpen);
+            command.Parameters.Add(new SqlParameter("@usuario", txtUsuario.Text));
             command.ExecuteNonQuery();
             LimparTela();
             MessageBox.Show("Excluído com sucesso!");

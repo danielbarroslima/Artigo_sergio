@@ -32,8 +32,25 @@ namespace Artigos
         {
             string strCommand = "Select * from usuarios where usuario = '" + txtUsuario.Text + "' and " + "Senha = '" + txtSenha.Text + "'";
             DataTable dt = new DataTable();
-            MySqlDataAdapter da = new MySqlDataAdapter(strCommand,ConnectOpen);
-           // da.Fill(dt);
+            //MySqlDataAdapter da = new MySqlDataAdapter(strCommand, ConnectOpen);
+            //da.Fill(dt);
+
+
+            var _conn = ConnectOpen;
+            var _cmd = new MySqlCommand
+            {
+                Connection = _conn,
+                CommandText = strCommand
+            };
+
+            _cmd.ExecuteNonQuery();
+
+            MySqlDataAdapter _da = new MySqlDataAdapter(_cmd);
+
+            _da.Fill(dt);
+
+
+
 
             if (dt.Rows.Count > 0)
             {
@@ -62,9 +79,9 @@ namespace Artigos
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             var frm = new Cadastrar();
-            frm.ShowDialog(); 
+            frm.ShowDialog();
 
-            
+
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

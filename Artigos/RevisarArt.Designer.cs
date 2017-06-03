@@ -115,7 +115,7 @@
             // lblaceitar
             // 
             this.lblaceitar.AutoSize = true;
-            this.lblaceitar.Location = new System.Drawing.Point(10, 110);
+            this.lblaceitar.Location = new System.Drawing.Point(10, 83);
             this.lblaceitar.Name = "lblaceitar";
             this.lblaceitar.Size = new System.Drawing.Size(40, 13);
             this.lblaceitar.TabIndex = 14;
@@ -125,7 +125,7 @@
             // lblrecusar
             // 
             this.lblrecusar.AutoSize = true;
-            this.lblrecusar.Location = new System.Drawing.Point(10, 142);
+            this.lblrecusar.Location = new System.Drawing.Point(10, 115);
             this.lblrecusar.Name = "lblrecusar";
             this.lblrecusar.Size = new System.Drawing.Size(47, 13);
             this.lblrecusar.TabIndex = 15;
@@ -134,7 +134,7 @@
             // rdAceite
             // 
             this.rdAceite.AutoSize = true;
-            this.rdAceite.Location = new System.Drawing.Point(13, 126);
+            this.rdAceite.Location = new System.Drawing.Point(13, 99);
             this.rdAceite.Name = "rdAceite";
             this.rdAceite.Size = new System.Drawing.Size(14, 13);
             this.rdAceite.TabIndex = 16;
@@ -145,7 +145,7 @@
             // rdiorecusa
             // 
             this.rdiorecusa.AutoSize = true;
-            this.rdiorecusa.Location = new System.Drawing.Point(13, 158);
+            this.rdiorecusa.Location = new System.Drawing.Point(13, 131);
             this.rdiorecusa.Name = "rdiorecusa";
             this.rdiorecusa.Size = new System.Drawing.Size(14, 13);
             this.rdiorecusa.TabIndex = 17;
@@ -171,7 +171,7 @@
             // 
             // btnOks
             // 
-            this.btnOks.Location = new System.Drawing.Point(63, 150);
+            this.btnOks.Location = new System.Drawing.Point(12, 157);
             this.btnOks.Name = "btnOks";
             this.btnOks.Size = new System.Drawing.Size(81, 29);
             this.btnOks.TabIndex = 20;

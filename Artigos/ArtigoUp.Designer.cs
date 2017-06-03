@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.lblTopico1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtConteudo = new System.Windows.Forms.TextBox();
             this.btnOk = new System.Windows.Forms.Button();
             this.rdioPostar = new System.Windows.Forms.RadioButton();
             this.rdioUploadRev = new System.Windows.Forms.RadioButton();
@@ -37,12 +37,13 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.lblNomelog = new System.Windows.Forms.Label();
             this.lblIdent = new System.Windows.Forms.Label();
-            this.txtfeed = new System.Windows.Forms.TextBox();
             this.lblFeed = new System.Windows.Forms.Label();
             this.lblNArtigo = new System.Windows.Forms.Label();
             this.lblNumArt = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtNomeArt = new System.Windows.Forms.TextBox();
+            this.txtNumArt = new System.Windows.Forms.TextBox();
+            this.cmbFeed = new System.Windows.Forms.ComboBox();
+            this.txtTitulo = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lblTopico1
@@ -54,22 +55,23 @@
             this.lblTopico1.TabIndex = 0;
             this.lblTopico1.Text = "Insira aqui seu novo artigo";
             // 
-            // textBox1
+            // txtConteudo
             // 
-            this.textBox1.Location = new System.Drawing.Point(16, 44);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(361, 287);
-            this.textBox1.TabIndex = 1;
+            this.txtConteudo.Location = new System.Drawing.Point(16, 78);
+            this.txtConteudo.Multiline = true;
+            this.txtConteudo.Name = "txtConteudo";
+            this.txtConteudo.Size = new System.Drawing.Size(361, 287);
+            this.txtConteudo.TabIndex = 1;
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(505, 308);
+            this.btnOk.Location = new System.Drawing.Point(395, 257);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 2;
             this.btnOk.Text = "Submeter";
             this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // rdioPostar
             // 
@@ -81,6 +83,7 @@
             this.rdioPostar.TabStop = true;
             this.rdioPostar.Text = "Postar";
             this.rdioPostar.UseVisualStyleBackColor = true;
+            this.rdioPostar.CheckedChanged += new System.EventHandler(this.rdioPostar_CheckedChanged);
             // 
             // rdioUploadRev
             // 
@@ -95,12 +98,13 @@
             // 
             // btnCancela
             // 
-            this.btnCancela.Location = new System.Drawing.Point(389, 308);
+            this.btnCancela.Location = new System.Drawing.Point(395, 193);
             this.btnCancela.Name = "btnCancela";
             this.btnCancela.Size = new System.Drawing.Size(75, 23);
             this.btnCancela.TabIndex = 5;
             this.btnCancela.Text = "Cancelar";
             this.btnCancela.UseVisualStyleBackColor = true;
+            this.btnCancela.Click += new System.EventHandler(this.btnCancela_Click);
             // 
             // linkLabel1
             // 
@@ -120,6 +124,7 @@
             this.lblNomelog.Size = new System.Drawing.Size(28, 13);
             this.lblNomelog.TabIndex = 7;
             this.lblNomelog.Text = ".......";
+            this.lblNomelog.Click += new System.EventHandler(this.lblNomelog_Click);
             // 
             // lblIdent
             // 
@@ -129,14 +134,6 @@
             this.lblIdent.Size = new System.Drawing.Size(23, 13);
             this.lblIdent.TabIndex = 8;
             this.lblIdent.Text = "Olá";
-            // 
-            // txtfeed
-            // 
-            this.txtfeed.Location = new System.Drawing.Point(395, 126);
-            this.txtfeed.Multiline = true;
-            this.txtfeed.Name = "txtfeed";
-            this.txtfeed.Size = new System.Drawing.Size(152, 154);
-            this.txtfeed.TabIndex = 9;
             // 
             // lblFeed
             // 
@@ -166,31 +163,47 @@
             this.lblNumArt.TabIndex = 12;
             this.lblNumArt.Text = "Numero do Artigo";
             // 
-            // textBox2
+            // txtNomeArt
             // 
-            this.textBox2.Location = new System.Drawing.Point(583, 156);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 13;
+            this.txtNomeArt.Location = new System.Drawing.Point(583, 156);
+            this.txtNomeArt.Name = "txtNomeArt";
+            this.txtNomeArt.Size = new System.Drawing.Size(100, 20);
+            this.txtNomeArt.TabIndex = 13;
             // 
-            // textBox3
+            // txtNumArt
             // 
-            this.textBox3.Location = new System.Drawing.Point(583, 218);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 14;
+            this.txtNumArt.Location = new System.Drawing.Point(583, 218);
+            this.txtNumArt.Name = "txtNumArt";
+            this.txtNumArt.Size = new System.Drawing.Size(100, 20);
+            this.txtNumArt.TabIndex = 14;
+            // 
+            // cmbFeed
+            // 
+            this.cmbFeed.FormattingEnabled = true;
+            this.cmbFeed.Location = new System.Drawing.Point(395, 131);
+            this.cmbFeed.Name = "cmbFeed";
+            this.cmbFeed.Size = new System.Drawing.Size(121, 21);
+            this.cmbFeed.TabIndex = 15;
+            // 
+            // txtTitulo
+            // 
+            this.txtTitulo.Location = new System.Drawing.Point(16, 36);
+            this.txtTitulo.Name = "txtTitulo";
+            this.txtTitulo.Size = new System.Drawing.Size(361, 20);
+            this.txtTitulo.TabIndex = 16;
             // 
             // ArtigoUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(718, 357);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.ClientSize = new System.Drawing.Size(718, 395);
+            this.Controls.Add(this.txtTitulo);
+            this.Controls.Add(this.cmbFeed);
+            this.Controls.Add(this.txtNumArt);
+            this.Controls.Add(this.txtNomeArt);
             this.Controls.Add(this.lblNumArt);
             this.Controls.Add(this.lblNArtigo);
             this.Controls.Add(this.lblFeed);
-            this.Controls.Add(this.txtfeed);
             this.Controls.Add(this.lblIdent);
             this.Controls.Add(this.lblNomelog);
             this.Controls.Add(this.linkLabel1);
@@ -198,10 +211,11 @@
             this.Controls.Add(this.rdioUploadRev);
             this.Controls.Add(this.rdioPostar);
             this.Controls.Add(this.btnOk);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtConteudo);
             this.Controls.Add(this.lblTopico1);
             this.Name = "ArtigoUp";
             this.Text = "ArtigoUp";
+            this.Load += new System.EventHandler(this.ArtigoUp_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -210,7 +224,7 @@
         #endregion
 
         private System.Windows.Forms.Label lblTopico1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtConteudo;
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.RadioButton rdioPostar;
         private System.Windows.Forms.RadioButton rdioUploadRev;
@@ -218,11 +232,12 @@
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label lblNomelog;
         private System.Windows.Forms.Label lblIdent;
-        private System.Windows.Forms.TextBox txtfeed;
         private System.Windows.Forms.Label lblFeed;
         private System.Windows.Forms.Label lblNArtigo;
         private System.Windows.Forms.Label lblNumArt;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtNomeArt;
+        private System.Windows.Forms.TextBox txtNumArt;
+        private System.Windows.Forms.ComboBox cmbFeed;
+        private System.Windows.Forms.TextBox txtTitulo;
     }
 }

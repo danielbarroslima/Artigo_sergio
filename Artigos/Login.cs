@@ -19,6 +19,8 @@ namespace Artigos
         public static SqlConnection ConnectOpen;
         public static int perfilUsuario;
 
+        public static string Usuario { get; set; }
+
         public Login()
         {
             conn = new Conexao();
@@ -33,23 +35,7 @@ namespace Artigos
             string strCommand = "Select * from usuarios where usuario = '" + txtUsuario.Text + "' and " + "Senha = '" + txtSenha.Text + "'";
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(strCommand, ConnectOpen);
-            //da.Fill(dt);
-
-
-            var _conn = ConnectOpen;
-            var _cmd = new SqlCommand
-            {
-                Connection = _conn,
-                CommandText = strCommand
-            };
-
-            _cmd.ExecuteNonQuery();
-
-            SqlDataAdapter _da = new SqlDataAdapter(_cmd);
-
-            _da.Fill(dt);
-
-
+            da.Fill(dt);
 
 
             if (dt.Rows.Count > 0)
@@ -57,6 +43,8 @@ namespace Artigos
                 this.Hide();
                 logado = true;
                 perfilUsuario = Convert.ToInt16(dt.Rows[0][2]);
+
+                Usuario = txtUsuario.Text;
             }
             else
                 MessageBox.Show("Usuário ou senha incorreto(s)!");

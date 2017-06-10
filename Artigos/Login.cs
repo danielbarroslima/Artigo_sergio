@@ -32,7 +32,7 @@ namespace Artigos
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string strCommand = "Select * from usuarios where usuario = '" + txtUsuario.Text + "' and " + "Senha = '" + txtSenha.Text + "'";
+            string strCommand = "Select * from cadusu where usuario = '" + txtUsuario.Text + "' and " + "Senha = '" + txtSenha.Text + "'";
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(strCommand, ConnectOpen);
             da.Fill(dt);
@@ -42,7 +42,7 @@ namespace Artigos
             {
                 this.Hide();
                 logado = true;
-                perfilUsuario = Convert.ToInt16(dt.Rows[0][2]);
+                perfilUsuario = Convert.ToInt16(dt.Rows[0][3]);
 
                 Usuario = txtUsuario.Text;
             }

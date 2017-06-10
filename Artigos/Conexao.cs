@@ -15,18 +15,23 @@ namespace Artigos
             try
             {
 
-
-               /** conn = new SqlConnection();
-                conn.ConnectionString = "SERVER=aplicativo_db.mysql.dbaas.com.br;DATABASE=aplicativo_db;user=aplicativo_db;password=Sector@22";
-                conn.Open();
-                return conn;*/
                 //Criar uma nova instancia
                 conn = new SqlConnection();
                 var path = AppDomain.CurrentDomain.BaseDirectory?.Replace("bin\\Debug\\", "").Replace("bin\\Release\\", "");
 
-                conn.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename="+ path + "database.mdf;Integrated Security=True;Connect Timeout=30";
+                conn.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + path + "Dados.mdf;Integrated Security=True;Connect Timeout=30";
                 conn.Open();
-                return conn; 
+                return conn;
+
+
+
+                ////Criar uma nova instancia
+                //conn = new SqlConnection();
+                //var path = AppDomain.CurrentDomain.BaseDirectory?.Replace("bin\\Debug\\", "").Replace("bin\\Release\\", "");
+
+                //conn.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + path + "database.mdf;Integrated Security=True;Connect Timeout=30";
+                //conn.Open();
+                //return conn;
 
             }
             catch (Exception ex)

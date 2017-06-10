@@ -13,10 +13,12 @@ namespace Artigos
 {
     public partial class ArtigoUp : Form
     {
+        public int rev = 0, rd = 0;
+        public string txP;
         public bool logado = false;
         private Conexao conn;
         private SqlConnection ConnectOpen;
-
+        public static string seleccionado { get; set; }
         public ArtigoUp()
         {
             InitializeComponent();
@@ -39,8 +41,8 @@ namespace Artigos
         {
             btnOk.Text = "Submeter";
             txtConteudo.Text = "";
-            txtNomeArt.Text = "";
-            txtNumArt.Text = "";
+            txtNArt.Text = "";
+            txtNArt.Text = "";
         }
         private void btnOk_Click(object sender, EventArgs e)
         {
@@ -68,17 +70,17 @@ namespace Artigos
             {
                 //incluir o using System.Text
                 StringBuilder sql = new StringBuilder();
-                sql.Append("Insert into Artigo(id,conteudo, titulo , autor)");
-                sql.Append("Values (@id, @conteudo, @titulo,@autor)");
+                sql.Append("Insert into artigo (titulo , conteudo, feedback, n_artigo)");
+                sql.Append("Values (@titulo, @conteudo, @feedback, @n_artigo)");
                 SqlCommand command = null;
 
                 try
                 {
                     command = new SqlCommand(sql.ToString(), ConnectOpen);
-                    command.Parameters.Add(new SqlParameter("@id", txtNumArt.Text));
-                    command.Parameters.Add(new SqlParameter("@conteudo", txtConteudo.Text));
                     command.Parameters.Add(new SqlParameter("@titulo", txtTitulo.Text));
-                    command.Parameters.Add(new SqlParameter("@autor", lblNomelog.Text));
+                    command.Parameters.Add(new SqlParameter("@conteudo", txtConteudo.Text));
+                    command.Parameters.Add(new SqlParameter("@feedback", Convert.ToString(cmbFeed.Text)));
+                    command.Parameters.Add(new SqlParameter("@n_artigo", txtNArt.Text));
                     command.ExecuteNonQuery();
 
                     MessageBox.Show("Cadastrado com sucesso!");
@@ -98,12 +100,35 @@ namespace Artigos
 
         private void rdioPostar_CheckedChanged(object sender, EventArgs e)
         {
-            
+            rd = 1;
+            rev = 0;
         }
 
         private void btnCancela_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //selecionar no banco 
+        }
+
+        private void txtTitulo_TextChanged(object sender, EventArgs e)
+        {
+            txP = txtTitulo.Text;
+        }
+
+        private void cmbFeed_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rdioUploadRev_CheckedChanged(object sender, EventArgs e)
+        {
+            rev = 1;
+
+            rd = 0;
         }
     }
 }

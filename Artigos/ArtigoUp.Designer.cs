@@ -40,16 +40,16 @@
             this.lblFeed = new System.Windows.Forms.Label();
             this.lblNArtigo = new System.Windows.Forms.Label();
             this.lblNumArt = new System.Windows.Forms.Label();
-            this.txtNomeArt = new System.Windows.Forms.TextBox();
-            this.txtNumArt = new System.Windows.Forms.TextBox();
+            this.txtNArt = new System.Windows.Forms.TextBox();
             this.cmbFeed = new System.Windows.Forms.ComboBox();
             this.txtTitulo = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblTopico1
             // 
             this.lblTopico1.AutoSize = true;
-            this.lblTopico1.Location = new System.Drawing.Point(13, 13);
+            this.lblTopico1.Location = new System.Drawing.Point(109, 13);
             this.lblTopico1.Name = "lblTopico1";
             this.lblTopico1.Size = new System.Drawing.Size(131, 13);
             this.lblTopico1.TabIndex = 0;
@@ -76,7 +76,7 @@
             // rdioPostar
             // 
             this.rdioPostar.AutoSize = true;
-            this.rdioPostar.Location = new System.Drawing.Point(168, 11);
+            this.rdioPostar.Location = new System.Drawing.Point(254, 9);
             this.rdioPostar.Name = "rdioPostar";
             this.rdioPostar.Size = new System.Drawing.Size(55, 17);
             this.rdioPostar.TabIndex = 3;
@@ -88,13 +88,14 @@
             // rdioUploadRev
             // 
             this.rdioUploadRev.AutoSize = true;
-            this.rdioUploadRev.Location = new System.Drawing.Point(255, 11);
+            this.rdioUploadRev.Location = new System.Drawing.Point(347, 9);
             this.rdioUploadRev.Name = "rdioUploadRev";
             this.rdioUploadRev.Size = new System.Drawing.Size(101, 17);
             this.rdioUploadRev.TabIndex = 4;
             this.rdioUploadRev.TabStop = true;
             this.rdioUploadRev.Text = "Upload Revisão";
             this.rdioUploadRev.UseVisualStyleBackColor = true;
+            this.rdioUploadRev.CheckedChanged += new System.EventHandler(this.rdioUploadRev_CheckedChanged);
             // 
             // btnCancela
             // 
@@ -147,7 +148,7 @@
             // lblNArtigo
             // 
             this.lblNArtigo.AutoSize = true;
-            this.lblNArtigo.Location = new System.Drawing.Point(580, 131);
+            this.lblNArtigo.Location = new System.Drawing.Point(13, 39);
             this.lblNArtigo.Name = "lblNArtigo";
             this.lblNArtigo.Size = new System.Drawing.Size(80, 13);
             this.lblNArtigo.TabIndex = 11;
@@ -157,25 +158,18 @@
             // lblNumArt
             // 
             this.lblNumArt.AutoSize = true;
-            this.lblNumArt.Location = new System.Drawing.Point(580, 193);
+            this.lblNumArt.Location = new System.Drawing.Point(594, 98);
             this.lblNumArt.Name = "lblNumArt";
             this.lblNumArt.Size = new System.Drawing.Size(89, 13);
             this.lblNumArt.TabIndex = 12;
             this.lblNumArt.Text = "Numero do Artigo";
             // 
-            // txtNomeArt
+            // txtNArt
             // 
-            this.txtNomeArt.Location = new System.Drawing.Point(583, 156);
-            this.txtNomeArt.Name = "txtNomeArt";
-            this.txtNomeArt.Size = new System.Drawing.Size(100, 20);
-            this.txtNomeArt.TabIndex = 13;
-            // 
-            // txtNumArt
-            // 
-            this.txtNumArt.Location = new System.Drawing.Point(583, 218);
-            this.txtNumArt.Name = "txtNumArt";
-            this.txtNumArt.Size = new System.Drawing.Size(100, 20);
-            this.txtNumArt.TabIndex = 14;
+            this.txtNArt.Location = new System.Drawing.Point(583, 132);
+            this.txtNArt.Name = "txtNArt";
+            this.txtNArt.Size = new System.Drawing.Size(100, 20);
+            this.txtNArt.TabIndex = 14;
             // 
             // cmbFeed
             // 
@@ -184,23 +178,35 @@
             this.cmbFeed.Name = "cmbFeed";
             this.cmbFeed.Size = new System.Drawing.Size(121, 21);
             this.cmbFeed.TabIndex = 15;
+            this.cmbFeed.SelectedIndexChanged += new System.EventHandler(this.cmbFeed_SelectedIndexChanged);
             // 
             // txtTitulo
             // 
-            this.txtTitulo.Location = new System.Drawing.Point(16, 36);
+            this.txtTitulo.Location = new System.Drawing.Point(112, 36);
             this.txtTitulo.Name = "txtTitulo";
-            this.txtTitulo.Size = new System.Drawing.Size(361, 20);
+            this.txtTitulo.Size = new System.Drawing.Size(336, 20);
             this.txtTitulo.TabIndex = 16;
+            this.txtTitulo.TextChanged += new System.EventHandler(this.txtTitulo_TextChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(458, 33);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "Pesquisa";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // ArtigoUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(718, 395);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.txtTitulo);
             this.Controls.Add(this.cmbFeed);
-            this.Controls.Add(this.txtNumArt);
-            this.Controls.Add(this.txtNomeArt);
+            this.Controls.Add(this.txtNArt);
             this.Controls.Add(this.lblNumArt);
             this.Controls.Add(this.lblNArtigo);
             this.Controls.Add(this.lblFeed);
@@ -235,9 +241,9 @@
         private System.Windows.Forms.Label lblFeed;
         private System.Windows.Forms.Label lblNArtigo;
         private System.Windows.Forms.Label lblNumArt;
-        private System.Windows.Forms.TextBox txtNomeArt;
-        private System.Windows.Forms.TextBox txtNumArt;
+        private System.Windows.Forms.TextBox txtNArt;
         private System.Windows.Forms.ComboBox cmbFeed;
         private System.Windows.Forms.TextBox txtTitulo;
+        private System.Windows.Forms.Button button1;
     }
 }

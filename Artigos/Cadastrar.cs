@@ -3,13 +3,14 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using System.Windows.Forms;
-//using MySql.Data.MySqlClient;
+using System.Globalization;
 
 
 namespace Artigos
 {
     public partial class Cadastrar : Form
     {
+        DateTime locaDate = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time"));
         public bool logado = false;
         private Conexao conn;
         private SqlConnection ConnectOpen;
@@ -28,7 +29,7 @@ namespace Artigos
             if (btnCadastrar.Text == "Alterar")
             {
                 StringBuilder sql = new StringBuilder();
-                sql.Append(" update usuarios set ");
+                sql.Append(" update cadusu set ");
                 sql.Append(" senha = @senha, ");
                 sql.Append(" perfil = @perfil "); //Não esqueçam de dar um espaço no final 
                 sql.Append(" where usuario = @usuario");
@@ -64,7 +65,7 @@ namespace Artigos
             {
                 //incluir o using System.Text
                 StringBuilder sql = new StringBuilder();
-                sql.Append("Insert into usuarios(Usuario, senha, perfil) ");
+                sql.Append("Insert into cadusu ( Usuario, senha, perfil) ");
                 sql.Append("Values (@usuario, @senha, @perfil)");
                 SqlCommand command = null;
 
@@ -72,22 +73,23 @@ namespace Artigos
                 switch (cmbPerfil.Text)
                 {
                     case "Autores":
-                        perfilSeleted = 1;
+                        perfilSeleted = 3;
                         break;
                     case "Revisores":
-                        perfilSeleted = 2;
+                        perfilSeleted = 3;
                         break;
                     case "Gerente":
                         perfilSeleted = 3;
                         break;
                     default:
-                        perfilSeleted = 1;
+                        perfilSeleted = 3;
                         break;
                 }
 
                 try
                 {
                     command = new SqlCommand(sql.ToString(), ConnectOpen);
+                   // command.Parameters.Add(new SqlParameter ("@id",locaDate));
                     command.Parameters.Add(new SqlParameter("@usuario", txtUsuario.Text));
                     command.Parameters.Add(new SqlParameter("@senha", txtSenha.Text));
                     command.Parameters.Add(new SqlParameter("@perfil", perfilSeleted));
@@ -126,22 +128,22 @@ namespace Artigos
 
             var conn = Login.ConnectOpen;
             //Buscar usuário selecionado
-            string sql = "Select * from usuarios where Usuario = '" + listarUsu.UsuarioSelecionado + "'";
+            string sql = "Select * from cadusu where Id = '" + listarUsu.UsuarioSelecionado + "'";
 
-
+          
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(sql, conn);
             da.Fill(dt);
 
             //Linha 0, coluna 0
-            txtUsuario.Text = dt.Rows[0][0].ToString();
+            txtUsuario.Text = dt.Rows[0][1].ToString();
 
             //Linha 0, coluna 1
-            txtSenha.Text = dt.Rows[0][1].ToString();
+            txtSenha.Text = dt.Rows[0][2].ToString();
 
             string PerfilSelecionado;
 
-            switch (dt.Rows[0][2].ToString())
+            switch (dt.Rows[0][3].ToString())
             {
                 case "1":
                     PerfilSelecionado = "Autores";
@@ -190,7 +192,7 @@ namespace Artigos
                 return; //caso cancele, o código abaixo não será excutado.
 
             //Buscar usuário selecionado
-            string sql = "Delete from usuarios where Usuario = @usuario";
+            string sql = "Delete from cadusu where Usuario = @usuario";
 
             SqlCommand command = null;
             command = new SqlCommand(sql.ToString(), ConnectOpen);

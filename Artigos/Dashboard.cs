@@ -26,15 +26,18 @@ namespace Artigos
             var frmLogin = new Login();
             frmLogin.ShowDialog();
 
+            if (Login.perfilUsuario == 3)
+            {
+                button1.Enabled = true;
+                  
+            }
+
             if (frmLogin.logado == false) {
                 Close();
 
             }
 
-            if(Login.perfilUsuario == 3)
-            {
-                button1.Enabled = true;
-            }
+
         }
 
         private void button1_Click(object sender, EventArgs e)

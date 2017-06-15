@@ -38,6 +38,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.btnListar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
+            this.lblIndId = new System.Windows.Forms.Label();
+            this.lblidUsu = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtSenha
@@ -141,11 +143,33 @@
             this.btnExcluir.Visible = false;
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
+            // lblIndId
+            // 
+            this.lblIndId.AutoSize = true;
+            this.lblIndId.Location = new System.Drawing.Point(131, 9);
+            this.lblIndId.Name = "lblIndId";
+            this.lblIndId.Size = new System.Drawing.Size(24, 13);
+            this.lblIndId.TabIndex = 14;
+            this.lblIndId.Text = "ID :";
+            this.lblIndId.Visible = false;
+            // 
+            // lblidUsu
+            // 
+            this.lblidUsu.AutoSize = true;
+            this.lblidUsu.Location = new System.Drawing.Point(150, 9);
+            this.lblidUsu.Name = "lblidUsu";
+            this.lblidUsu.Size = new System.Drawing.Size(25, 13);
+            this.lblidUsu.TabIndex = 15;
+            this.lblidUsu.Text = "lblid";
+            this.lblidUsu.Visible = false;
+            // 
             // Cadastrar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(421, 196);
+            this.Controls.Add(this.lblidUsu);
+            this.Controls.Add(this.lblIndId);
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.btnListar);
             this.Controls.Add(this.button2);
@@ -177,5 +201,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnListar;
         private System.Windows.Forms.Button btnExcluir;
+        private System.Windows.Forms.Label lblIndId;
+        private System.Windows.Forms.Label lblidUsu;
     }
 }

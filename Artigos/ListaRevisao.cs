@@ -13,6 +13,7 @@ namespace Artigos
 {
     public partial class ListaRevisao : Form
     {
+        public string aguarde = "Aguardando";
         public string UsuarioSelecionado = "";
         public ListaRevisao()
         {
@@ -24,8 +25,8 @@ namespace Artigos
         private void ListaRevisao_Load(object sender, EventArgs e)
         {
             var conn = Login.ConnectOpen;
-            //Buscar todos usuários cadastrados
-            string sql = "Select * from artigo ";
+            //Buscar todos artigos cadastrados
+            string sql = "Select * from artigo where feedback ='" + aguarde + "'";
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(sql, conn);
             da.Fill(dt);
@@ -34,6 +35,18 @@ namespace Artigos
             {
                 dtgrdRev.DataSource = dt;
             }
+        }
+
+        private void dtgrdRev_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            //Recuperar a linha selecionadas.
+            UsuarioSelecionado = dtgrdRev.Rows[e.RowIndex].Cells[0].Value.ToString();
+
+            //Fechar a tela
+            Hide();
         }
     }
 }

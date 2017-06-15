@@ -13,8 +13,8 @@ namespace Artigos
 {
     public partial class ArtigoUp : Form
     {
-        public int rev = 0, rd = 0;
-        public string txP;
+        public int rev = 0, rd = 0 ;
+        public string txP, aguarde="Aguardando";
         public bool logado = false;
         private Conexao conn;
         private SqlConnection ConnectOpen;
@@ -42,7 +42,7 @@ namespace Artigos
            
             txtConteudo.Text = "";
             txtTitulo.Text = "";
-            txtNArt.Text = "";
+            lblNart.Text = "";
 
         }
         private void btnOk_Click(object sender, EventArgs e)
@@ -50,13 +50,11 @@ namespace Artigos
             if (rev == 1)
             {
 
-
+                
 
                 StringBuilder sql = new StringBuilder();
-                sql.Append(" update artigo set ");
-                sql.Append(" titulo = @titulo, ");
-                sql.Append(" conteudo = @conteudo "); //Não esqueçam de dar um espaço no final
-                sql.Append(" where n_artigo = @n_artigo");
+                sql.Append("update artigo set titulo = @titulo, conteudo = @conteudo, aceito = @aceito, feedback = @feedback, autor = @autor where id = @id");
+
 
                 SqlCommand command = null;
 
@@ -64,6 +62,10 @@ namespace Artigos
                 command = new SqlCommand(sql.ToString(), ConnectOpen);
                 command.Parameters.Add(new SqlParameter("@titulo", txtTitulo.Text));
                 command.Parameters.Add(new SqlParameter("@conteudo", txtConteudo.Text));
+                command.Parameters.Add(new SqlParameter("@aceito",aguarde));
+                command.Parameters.Add(new SqlParameter("@feedback", aguarde));
+                command.Parameters.Add(new SqlParameter("@autor", lblNomelog.Text));
+                command.Parameters.Add(new SqlParameter("@id", lblNart.Text));
              
                 command.ExecuteNonQuery();
 
@@ -74,8 +76,8 @@ namespace Artigos
             {
                 //incluir o using System.Text
                 StringBuilder sql = new StringBuilder();
-                sql.Append("Insert into artigo (titulo , conteudo, n_artigo)");
-                sql.Append("Values (@titulo, @conteudo, @n_artigo)");
+                sql.Append("Insert into artigo (titulo , conteudo, feedback, autor, aceito)");
+                sql.Append("Values (@titulo, @conteudo, @feedback, @autor, @aceito )");
                 SqlCommand command = null;
 
                 try
@@ -83,7 +85,9 @@ namespace Artigos
                     command = new SqlCommand(sql.ToString(), ConnectOpen);
                     command.Parameters.Add(new SqlParameter("@titulo", txtTitulo.Text));
                     command.Parameters.Add(new SqlParameter("@conteudo", txtConteudo.Text));
-                    command.Parameters.Add(new SqlParameter("@n_artigo", txtNArt.Text));
+                    command.Parameters.Add(new SqlParameter("@feedback", aguarde));
+                    command.Parameters.Add(new SqlParameter("@autor", lblNomelog.Text));
+                    command.Parameters.Add(new SqlParameter("@aceito",aguarde));
                     command.ExecuteNonQuery();
 
                     MessageBox.Show("Cadastrado com sucesso!");
@@ -123,9 +127,11 @@ namespace Artigos
             txP = txtTitulo.Text;
         }
 
+
+
         private void btnfeed_Click(object sender, EventArgs e)
         {
-
+            
             var artup = new listaArtigo();
             artup.ShowDialog();
 
@@ -138,11 +144,13 @@ namespace Artigos
             //Buscar usuário selecionado
             string sql = "Select * from artigo where Id = '" + artup.UsuarioSelecionado + "'";
 
+            btnOk.Text = "update de artigo";
 
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(sql, conn);
             da.Fill(dt);
-            txtNArt.Text = dt.Rows[0][0].ToString();
+
+            lblNart.Text = dt.Rows[0][0].ToString();
             //Linha 0, coluna 1
            txtTitulo.Text = dt.Rows[0][1].ToString();
 
@@ -152,6 +160,8 @@ namespace Artigos
 
 
         }
+
+
 
         private void rdioUploadRev_CheckedChanged(object sender, EventArgs e)
         {

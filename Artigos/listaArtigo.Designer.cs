@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             this.dtgridArt = new System.Windows.Forms.DataGridView();
-            this.btnfeedar = new System.Windows.Forms.Button();
+            this.btnfeedRev = new System.Windows.Forms.Button();
+            this.btnFeedArt = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgridArt)).BeginInit();
             this.SuspendLayout();
             // 
@@ -38,27 +39,38 @@
             this.dtgridArt.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgridArt.Location = new System.Drawing.Point(12, 12);
             this.dtgridArt.Name = "dtgridArt";
-            this.dtgridArt.Size = new System.Drawing.Size(549, 304);
+            this.dtgridArt.Size = new System.Drawing.Size(642, 266);
             this.dtgridArt.TabIndex = 0;
-            this.dtgridArt.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgridArt_CellContentClick);
+
             this.dtgridArt.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgridArt_CellContentDoubleClick);
             // 
-            // btnfeedar
+            // btnfeedRev
             // 
-            this.btnfeedar.Location = new System.Drawing.Point(592, 120);
-            this.btnfeedar.Name = "btnfeedar";
-            this.btnfeedar.Size = new System.Drawing.Size(75, 23);
-            this.btnfeedar.TabIndex = 1;
-            this.btnfeedar.Text = "A revisar ";
-            this.btnfeedar.UseVisualStyleBackColor = true;
-            this.btnfeedar.Click += new System.EventHandler(this.btnfeedar_Click);
+            this.btnfeedRev.Location = new System.Drawing.Point(12, 284);
+            this.btnfeedRev.Name = "btnfeedRev";
+            this.btnfeedRev.Size = new System.Drawing.Size(114, 23);
+            this.btnfeedRev.TabIndex = 1;
+            this.btnfeedRev.Text = "Artigos Revisados";
+            this.btnfeedRev.UseVisualStyleBackColor = true;
+            this.btnfeedRev.Click += new System.EventHandler(this.btnfeedar_Click);
+            // 
+            // btnFeedArt
+            // 
+            this.btnFeedArt.Location = new System.Drawing.Point(169, 284);
+            this.btnFeedArt.Name = "btnFeedArt";
+            this.btnFeedArt.Size = new System.Drawing.Size(152, 23);
+            this.btnFeedArt.TabIndex = 2;
+            this.btnFeedArt.Text = "FeedBack Dos Artigos";
+            this.btnFeedArt.UseVisualStyleBackColor = true;
+            this.btnFeedArt.Click += new System.EventHandler(this.btnFeedArt_Click);
             // 
             // listaArtigo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(679, 319);
-            this.Controls.Add(this.btnfeedar);
+            this.Controls.Add(this.btnFeedArt);
+            this.Controls.Add(this.btnfeedRev);
             this.Controls.Add(this.dtgridArt);
             this.Name = "listaArtigo";
             this.Text = "listaArtigo";
@@ -71,6 +83,7 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dtgridArt;
-        private System.Windows.Forms.Button btnfeedar;
+        private System.Windows.Forms.Button btnfeedRev;
+        private System.Windows.Forms.Button btnFeedArt;
     }
 }

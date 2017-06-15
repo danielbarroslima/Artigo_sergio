@@ -25,7 +25,7 @@ namespace Artigos
         {
             var conn = Login.ConnectOpen;
             //Buscar todos usuários cadastrados
-            string sql = "Select * from cadusu ";
+            string sql = "Select * from cadusu  ";
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(sql, conn);
             da.Fill(dt);

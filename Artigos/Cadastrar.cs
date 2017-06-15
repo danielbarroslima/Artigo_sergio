@@ -10,6 +10,7 @@ namespace Artigos
 {
     public partial class Cadastrar : Form
     {
+        public int cd;
         DateTime locaDate = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time"));
         public bool logado = false;
         private Conexao conn;
@@ -28,12 +29,10 @@ namespace Artigos
         {
             if (btnCadastrar.Text == "Alterar")
             {
+                cd =Convert.ToInt16(lblidUsu.Text) ;
                 StringBuilder sql = new StringBuilder();
-                sql.Append(" update cadusu set ");
-                sql.Append(" usuario = @Usuario, ");
-                sql.Append(" senha = @Senha, ");
-                sql.Append(" perfil = @Perfil "); //Não esqueçam de dar um espaço no final 
-                sql.Append(" where usuario = @usuario");
+                sql.Append("update cadusu set usuario = @usuario, senha = @senha, perfil = @perfil where id = @id");
+
 
                 SqlCommand command = null;
                 int perfilSeleted = 0;
@@ -54,12 +53,14 @@ namespace Artigos
                 }
 
                 command = new SqlCommand(sql.ToString(), ConnectOpen);
+
                 command.Parameters.Add(new SqlParameter("@usuario", txtUsuario.Text));
                 command.Parameters.Add(new SqlParameter("@senha", txtSenha.Text));
                 command.Parameters.Add(new SqlParameter("@perfil", perfilSeleted));
+                command.Parameters.Add(new SqlParameter("@id", lblidUsu.Text));
                 command.ExecuteNonQuery();
 
-                MessageBox.Show("Alterado com sucesso!");
+                MessageBox.Show("Alterado com sucesso!    ID: "+cd);
                 LimparTela();
             }
             else
@@ -129,12 +130,14 @@ namespace Artigos
             var conn = Login.ConnectOpen;
             //Buscar usuário selecionado
             string sql = "Select * from cadusu where Id = '" + listarUsu.UsuarioSelecionado + "'";
-
+            lblidUsu.Visible = true;
+            lblIndId.Visible = true;
           
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(sql, conn);
             da.Fill(dt);
 
+            lblidUsu.Text = dt.Rows[0][0].ToString();
             //Linha 0, coluna 0
             txtUsuario.Text = dt.Rows[0][1].ToString();
 

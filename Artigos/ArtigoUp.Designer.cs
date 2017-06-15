@@ -38,10 +38,9 @@
             this.lblIdent = new System.Windows.Forms.Label();
             this.lblNArtigo = new System.Windows.Forms.Label();
             this.lblNumArt = new System.Windows.Forms.Label();
-            this.txtNArt = new System.Windows.Forms.TextBox();
             this.txtTitulo = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnfeed = new System.Windows.Forms.Button();
+            this.lblNart = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblTopico1
@@ -49,21 +48,21 @@
             this.lblTopico1.AutoSize = true;
             this.lblTopico1.Location = new System.Drawing.Point(12, 13);
             this.lblTopico1.Name = "lblTopico1";
-            this.lblTopico1.Size = new System.Drawing.Size(131, 13);
+            this.lblTopico1.Size = new System.Drawing.Size(105, 13);
             this.lblTopico1.TabIndex = 0;
-            this.lblTopico1.Text = "Insira aqui seu novo artigo";
+            this.lblTopico1.Text = "O que deseja fazer ?";
             // 
             // txtConteudo
             // 
             this.txtConteudo.Location = new System.Drawing.Point(16, 78);
             this.txtConteudo.Multiline = true;
             this.txtConteudo.Name = "txtConteudo";
-            this.txtConteudo.Size = new System.Drawing.Size(517, 287);
+            this.txtConteudo.Size = new System.Drawing.Size(682, 272);
             this.txtConteudo.TabIndex = 1;
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(631, 328);
+            this.btnOk.Location = new System.Drawing.Point(18, 360);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 2;
@@ -76,28 +75,28 @@
             this.rdioPostar.AutoSize = true;
             this.rdioPostar.Location = new System.Drawing.Point(157, 9);
             this.rdioPostar.Name = "rdioPostar";
-            this.rdioPostar.Size = new System.Drawing.Size(55, 17);
+            this.rdioPostar.Size = new System.Drawing.Size(85, 17);
             this.rdioPostar.TabIndex = 3;
             this.rdioPostar.TabStop = true;
-            this.rdioPostar.Text = "Postar";
+            this.rdioPostar.Text = "Postar Artigo";
             this.rdioPostar.UseVisualStyleBackColor = true;
             this.rdioPostar.CheckedChanged += new System.EventHandler(this.rdioPostar_CheckedChanged);
             // 
             // rdioUploadRev
             // 
             this.rdioUploadRev.AutoSize = true;
-            this.rdioUploadRev.Location = new System.Drawing.Point(250, 9);
+            this.rdioUploadRev.Location = new System.Drawing.Point(271, 9);
             this.rdioUploadRev.Name = "rdioUploadRev";
-            this.rdioUploadRev.Size = new System.Drawing.Size(101, 17);
+            this.rdioUploadRev.Size = new System.Drawing.Size(110, 17);
             this.rdioUploadRev.TabIndex = 4;
             this.rdioUploadRev.TabStop = true;
-            this.rdioUploadRev.Text = "Upload Revisão";
+            this.rdioUploadRev.Text = "Verificar Revisões";
             this.rdioUploadRev.UseVisualStyleBackColor = true;
             this.rdioUploadRev.CheckedChanged += new System.EventHandler(this.rdioUploadRev_CheckedChanged);
             // 
             // btnCancela
             // 
-            this.btnCancela.Location = new System.Drawing.Point(539, 328);
+            this.btnCancela.Location = new System.Drawing.Point(604, 360);
             this.btnCancela.Name = "btnCancela";
             this.btnCancela.Size = new System.Drawing.Size(75, 23);
             this.btnCancela.TabIndex = 5;
@@ -108,7 +107,7 @@
             // lblNomelog
             // 
             this.lblNomelog.AutoSize = true;
-            this.lblNomelog.Location = new System.Drawing.Point(653, 43);
+            this.lblNomelog.Location = new System.Drawing.Point(651, 11);
             this.lblNomelog.Name = "lblNomelog";
             this.lblNomelog.Size = new System.Drawing.Size(28, 13);
             this.lblNomelog.TabIndex = 7;
@@ -118,11 +117,11 @@
             // lblIdent
             // 
             this.lblIdent.AutoSize = true;
-            this.lblIdent.Location = new System.Drawing.Point(585, 43);
+            this.lblIdent.Location = new System.Drawing.Point(583, 11);
             this.lblIdent.Name = "lblIdent";
-            this.lblIdent.Size = new System.Drawing.Size(23, 13);
+            this.lblIdent.Size = new System.Drawing.Size(58, 13);
             this.lblIdent.TabIndex = 8;
-            this.lblIdent.Text = "Olá";
+            this.lblIdent.Text = "Bem Vindo";
             // 
             // lblNArtigo
             // 
@@ -137,56 +136,48 @@
             // lblNumArt
             // 
             this.lblNumArt.AutoSize = true;
-            this.lblNumArt.Location = new System.Drawing.Point(583, 159);
+            this.lblNumArt.Location = new System.Drawing.Point(583, 56);
             this.lblNumArt.Name = "lblNumArt";
             this.lblNumArt.Size = new System.Drawing.Size(89, 13);
             this.lblNumArt.TabIndex = 12;
             this.lblNumArt.Text = "Numero do Artigo";
             // 
-            // txtNArt
-            // 
-            this.txtNArt.Location = new System.Drawing.Point(572, 193);
-            this.txtNArt.Name = "txtNArt";
-            this.txtNArt.Size = new System.Drawing.Size(100, 20);
-            this.txtNArt.TabIndex = 14;
-            // 
             // txtTitulo
             // 
             this.txtTitulo.Location = new System.Drawing.Point(112, 36);
             this.txtTitulo.Name = "txtTitulo";
-            this.txtTitulo.Size = new System.Drawing.Size(336, 20);
+            this.txtTitulo.Size = new System.Drawing.Size(421, 20);
             this.txtTitulo.TabIndex = 16;
             this.txtTitulo.TextChanged += new System.EventHandler(this.txtTitulo_TextChanged);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(458, 33);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 17;
-            this.button1.Text = "Pesquisa";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // btnfeed
             // 
-            this.btnfeed.Location = new System.Drawing.Point(572, 252);
+            this.btnfeed.Location = new System.Drawing.Point(189, 360);
             this.btnfeed.Name = "btnfeed";
-            this.btnfeed.Size = new System.Drawing.Size(100, 23);
+            this.btnfeed.Size = new System.Drawing.Size(169, 23);
             this.btnfeed.TabIndex = 18;
-            this.btnfeed.Text = "Feedback";
+            this.btnfeed.Text = "Feedback e Revisões";
             this.btnfeed.UseVisualStyleBackColor = true;
             this.btnfeed.Click += new System.EventHandler(this.btnfeed_Click);
+            // 
+            // lblNart
+            // 
+            this.lblNart.AutoSize = true;
+            this.lblNart.Location = new System.Drawing.Point(682, 56);
+            this.lblNart.Name = "lblNart";
+            this.lblNart.Size = new System.Drawing.Size(16, 13);
+            this.lblNart.TabIndex = 19;
+            this.lblNart.Text = "...";
+
             // 
             // ArtigoUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(718, 395);
+            this.Controls.Add(this.lblNart);
             this.Controls.Add(this.btnfeed);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.txtTitulo);
-            this.Controls.Add(this.txtNArt);
             this.Controls.Add(this.lblNumArt);
             this.Controls.Add(this.lblNArtigo);
             this.Controls.Add(this.lblIdent);
@@ -217,9 +208,8 @@
         private System.Windows.Forms.Label lblIdent;
         private System.Windows.Forms.Label lblNArtigo;
         private System.Windows.Forms.Label lblNumArt;
-        private System.Windows.Forms.TextBox txtNArt;
         private System.Windows.Forms.TextBox txtTitulo;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnfeed;
+        private System.Windows.Forms.Label lblNart;
     }
 }

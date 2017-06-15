@@ -37,15 +37,15 @@
             this.dtgrdRev.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgrdRev.Location = new System.Drawing.Point(22, 12);
             this.dtgrdRev.Name = "dtgrdRev";
-            this.dtgrdRev.Size = new System.Drawing.Size(558, 235);
+            this.dtgrdRev.Size = new System.Drawing.Size(672, 235);
             this.dtgrdRev.TabIndex = 0;
-
+            this.dtgrdRev.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgrdRev_CellContentDoubleClick);
             // 
             // ListaRevisao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(602, 262);
+            this.ClientSize = new System.Drawing.Size(706, 263);
             this.Controls.Add(this.dtgrdRev);
             this.Name = "ListaRevisao";
             this.Text = "ListaRevisao";

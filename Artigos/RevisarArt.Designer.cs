@@ -29,9 +29,8 @@
         private void InitializeComponent()
         {
             this.lblRevise = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtconteudoR = new System.Windows.Forms.TextBox();
             this.btnConcordar = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.rdio1 = new System.Windows.Forms.RadioButton();
             this.rdio2 = new System.Windows.Forms.RadioButton();
             this.rdio3 = new System.Windows.Forms.RadioButton();
@@ -40,9 +39,12 @@
             this.rdAceite = new System.Windows.Forms.RadioButton();
             this.rdiorecusa = new System.Windows.Forms.RadioButton();
             this.lblMotivo = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtfeedMot = new System.Windows.Forms.TextBox();
             this.btnOks = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
+            this.btnListRev = new System.Windows.Forms.Button();
+            this.txttituloR = new System.Windows.Forms.TextBox();
+            this.lbltitulo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblRevise
@@ -54,13 +56,13 @@
             this.lblRevise.TabIndex = 0;
             this.lblRevise.Text = "Revise o artigo que deseja ";
             // 
-            // textBox1
+            // txtconteudoR
             // 
-            this.textBox1.Location = new System.Drawing.Point(150, 52);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(471, 277);
-            this.textBox1.TabIndex = 8;
+            this.txtconteudoR.Location = new System.Drawing.Point(150, 52);
+            this.txtconteudoR.Multiline = true;
+            this.txtconteudoR.Name = "txtconteudoR";
+            this.txtconteudoR.Size = new System.Drawing.Size(471, 277);
+            this.txtconteudoR.TabIndex = 8;
             // 
             // btnConcordar
             // 
@@ -70,14 +72,6 @@
             this.btnConcordar.TabIndex = 9;
             this.btnConcordar.Text = "Submeter";
             this.btnConcordar.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(13, 52);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 10;
             // 
             // rdio1
             // 
@@ -151,6 +145,7 @@
             this.rdiorecusa.TabIndex = 17;
             this.rdiorecusa.TabStop = true;
             this.rdiorecusa.UseVisualStyleBackColor = true;
+            this.rdiorecusa.CheckedChanged += new System.EventHandler(this.rdiorecusa_CheckedChanged);
             // 
             // lblMotivo
             // 
@@ -161,13 +156,13 @@
             this.lblMotivo.TabIndex = 18;
             this.lblMotivo.Text = "Motivo";
             // 
-            // textBox2
+            // txtfeedMot
             // 
-            this.textBox2.Location = new System.Drawing.Point(13, 223);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(121, 106);
-            this.textBox2.TabIndex = 19;
+            this.txtfeedMot.Location = new System.Drawing.Point(13, 223);
+            this.txtfeedMot.Multiline = true;
+            this.txtfeedMot.Name = "txtfeedMot";
+            this.txtfeedMot.Size = new System.Drawing.Size(121, 106);
+            this.txtfeedMot.TabIndex = 19;
             // 
             // btnOks
             // 
@@ -177,6 +172,7 @@
             this.btnOks.TabIndex = 20;
             this.btnOks.Text = "Feito";
             this.btnOks.UseVisualStyleBackColor = true;
+            this.btnOks.Click += new System.EventHandler(this.btnOks_Click);
             // 
             // btnDown
             // 
@@ -187,14 +183,43 @@
             this.btnDown.Text = "Download";
             this.btnDown.UseVisualStyleBackColor = true;
             // 
+            // btnListRev
+            // 
+            this.btnListRev.Location = new System.Drawing.Point(12, 40);
+            this.btnListRev.Name = "btnListRev";
+            this.btnListRev.Size = new System.Drawing.Size(103, 23);
+            this.btnListRev.TabIndex = 22;
+            this.btnListRev.Text = "Lista de artigos";
+            this.btnListRev.UseVisualStyleBackColor = true;
+            this.btnListRev.Click += new System.EventHandler(this.btnListRev_Click);
+            // 
+            // txttituloR
+            // 
+            this.txttituloR.Location = new System.Drawing.Point(315, 26);
+            this.txttituloR.Name = "txttituloR";
+            this.txttituloR.Size = new System.Drawing.Size(306, 20);
+            this.txttituloR.TabIndex = 23;
+            // 
+            // lbltitulo
+            // 
+            this.lbltitulo.AutoSize = true;
+            this.lbltitulo.Location = new System.Drawing.Point(208, 29);
+            this.lbltitulo.Name = "lbltitulo";
+            this.lbltitulo.Size = new System.Drawing.Size(35, 13);
+            this.lbltitulo.TabIndex = 24;
+            this.lbltitulo.Text = "label1";
+            // 
             // RevisarArt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(725, 376);
+            this.Controls.Add(this.lbltitulo);
+            this.Controls.Add(this.txttituloR);
+            this.Controls.Add(this.btnListRev);
             this.Controls.Add(this.btnDown);
             this.Controls.Add(this.btnOks);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtfeedMot);
             this.Controls.Add(this.lblMotivo);
             this.Controls.Add(this.rdiorecusa);
             this.Controls.Add(this.rdAceite);
@@ -203,9 +228,8 @@
             this.Controls.Add(this.rdio3);
             this.Controls.Add(this.rdio2);
             this.Controls.Add(this.rdio1);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.btnConcordar);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtconteudoR);
             this.Controls.Add(this.lblRevise);
             this.Name = "RevisarArt";
             this.Text = "RevisarArt";
@@ -218,9 +242,8 @@
         #endregion
 
         private System.Windows.Forms.Label lblRevise;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtconteudoR;
         private System.Windows.Forms.Button btnConcordar;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.RadioButton rdio1;
         private System.Windows.Forms.RadioButton rdio2;
         private System.Windows.Forms.RadioButton rdio3;
@@ -229,8 +252,11 @@
         private System.Windows.Forms.RadioButton rdAceite;
         private System.Windows.Forms.RadioButton rdiorecusa;
         private System.Windows.Forms.Label lblMotivo;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtfeedMot;
         private System.Windows.Forms.Button btnOks;
         private System.Windows.Forms.Button btnDown;
+        private System.Windows.Forms.Button btnListRev;
+        private System.Windows.Forms.TextBox txttituloR;
+        private System.Windows.Forms.Label lbltitulo;
     }
 }

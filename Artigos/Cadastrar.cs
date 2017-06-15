@@ -30,8 +30,9 @@ namespace Artigos
             {
                 StringBuilder sql = new StringBuilder();
                 sql.Append(" update cadusu set ");
-                sql.Append(" senha = @senha, ");
-                sql.Append(" perfil = @perfil "); //Não esqueçam de dar um espaço no final 
+                sql.Append(" usuario = @Usuario, ");
+                sql.Append(" senha = @Senha, ");
+                sql.Append(" perfil = @Perfil "); //Não esqueçam de dar um espaço no final 
                 sql.Append(" where usuario = @usuario");
 
                 SqlCommand command = null;
@@ -53,9 +54,9 @@ namespace Artigos
                 }
 
                 command = new SqlCommand(sql.ToString(), ConnectOpen);
+                command.Parameters.Add(new SqlParameter("@usuario", txtUsuario.Text));
                 command.Parameters.Add(new SqlParameter("@senha", txtSenha.Text));
                 command.Parameters.Add(new SqlParameter("@perfil", perfilSeleted));
-                command.Parameters.Add(new SqlParameter("@usuario", txtUsuario.Text));
                 command.ExecuteNonQuery();
 
                 MessageBox.Show("Alterado com sucesso!");
@@ -89,7 +90,6 @@ namespace Artigos
                 try
                 {
                     command = new SqlCommand(sql.ToString(), ConnectOpen);
-                   // command.Parameters.Add(new SqlParameter ("@id",locaDate));
                     command.Parameters.Add(new SqlParameter("@usuario", txtUsuario.Text));
                     command.Parameters.Add(new SqlParameter("@senha", txtSenha.Text));
                     command.Parameters.Add(new SqlParameter("@perfil", perfilSeleted));
@@ -101,7 +101,7 @@ namespace Artigos
                 catch (Exception ex)
                 {
                     MessageBox.Show("Erro ao cadastrar" + ex);
-                  //  MessageBox.Show("ola");
+                 
                 }
             }//Fim else 
 
@@ -200,6 +200,11 @@ namespace Artigos
             command.ExecuteNonQuery();
             LimparTela();
             MessageBox.Show("Excluído com sucesso!");
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
 
         }
     }

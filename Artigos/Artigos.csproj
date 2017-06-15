@@ -81,6 +81,18 @@
     <Compile Include="Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="listaArtigo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="listaArtigo.Designer.cs">
+      <DependentUpon>listaArtigo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListaRevisao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListaRevisao.Designer.cs">
+      <DependentUpon>ListaRevisao.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListarUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +121,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="listaArtigo.resx">
+      <DependentUpon>listaArtigo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListaRevisao.resx">
+      <DependentUpon>ListaRevisao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListarUsuario.resx">
       <DependentUpon>ListarUsuario.cs</DependentUpon>

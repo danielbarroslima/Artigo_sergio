@@ -39,39 +39,43 @@ namespace Artigos
         }
         private void LimparTela()
         {
-            btnOk.Text = "Submeter";
+           
             txtConteudo.Text = "";
+            txtTitulo.Text = "";
             txtNArt.Text = "";
-            txtNArt.Text = "";
+
         }
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (btnOk.Text == "alterar")
+            if (rev == 1)
             {
+
+
+
                 StringBuilder sql = new StringBuilder();
-                sql.Append(" update usuarios set ");
-                sql.Append(" senha = @senha, ");
-                sql.Append(" perfil = @perfil "); //Não esqueçam de dar um espaço no final 
-                sql.Append(" where usuario = @usuario");
+                sql.Append(" update artigo set ");
+                sql.Append(" titulo = @titulo, ");
+                sql.Append(" conteudo = @conteudo "); //Não esqueçam de dar um espaço no final
+                sql.Append(" where n_artigo = @n_artigo");
 
                 SqlCommand command = null;
-                
+
 
                 command = new SqlCommand(sql.ToString(), ConnectOpen);
+                command.Parameters.Add(new SqlParameter("@titulo", txtTitulo.Text));
                 command.Parameters.Add(new SqlParameter("@conteudo", txtConteudo.Text));
-                command.Parameters.Add(new SqlParameter("@titulo", txtTitulo));
-              //  command.Parameters.Add(new SqlParameter("@autor", lblNomelog.Text));
+             
                 command.ExecuteNonQuery();
 
                 MessageBox.Show("Alterado com sucesso!");
                 LimparTela();
-            }
+             }
             else
             {
                 //incluir o using System.Text
                 StringBuilder sql = new StringBuilder();
-                sql.Append("Insert into artigo (titulo , conteudo, feedback, n_artigo)");
-                sql.Append("Values (@titulo, @conteudo, @feedback, @n_artigo)");
+                sql.Append("Insert into artigo (titulo , conteudo, n_artigo)");
+                sql.Append("Values (@titulo, @conteudo, @n_artigo)");
                 SqlCommand command = null;
 
                 try
@@ -79,7 +83,6 @@ namespace Artigos
                     command = new SqlCommand(sql.ToString(), ConnectOpen);
                     command.Parameters.Add(new SqlParameter("@titulo", txtTitulo.Text));
                     command.Parameters.Add(new SqlParameter("@conteudo", txtConteudo.Text));
-                    command.Parameters.Add(new SqlParameter("@feedback", Convert.ToString(cmbFeed.Text)));
                     command.Parameters.Add(new SqlParameter("@n_artigo", txtNArt.Text));
                     command.ExecuteNonQuery();
 
@@ -96,6 +99,7 @@ namespace Artigos
 
         private void lblNomelog_Click(object sender, EventArgs e)
         {  
+
         }
 
         private void rdioPostar_CheckedChanged(object sender, EventArgs e)
@@ -111,7 +115,7 @@ namespace Artigos
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //selecionar no banco 
+           
         }
 
         private void txtTitulo_TextChanged(object sender, EventArgs e)
@@ -119,8 +123,33 @@ namespace Artigos
             txP = txtTitulo.Text;
         }
 
-        private void cmbFeed_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnfeed_Click(object sender, EventArgs e)
         {
+
+            var artup = new listaArtigo();
+            artup.ShowDialog();
+
+
+            //Verificar se foi selecionado algum item
+            if (artup.UsuarioSelecionado == "")
+                return;
+
+            var conn = Login.ConnectOpen;
+            //Buscar usuário selecionado
+            string sql = "Select * from artigo where Id = '" + artup.UsuarioSelecionado + "'";
+
+
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+            da.Fill(dt);
+            txtNArt.Text = dt.Rows[0][0].ToString();
+            //Linha 0, coluna 1
+           txtTitulo.Text = dt.Rows[0][1].ToString();
+
+            //Linha 0, coluna 2
+           txtConteudo.Text = dt.Rows[0][2].ToString();
+
+
 
         }
 

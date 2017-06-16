@@ -28,8 +28,15 @@ namespace Artigos
 
             if (Login.perfilUsuario == 3)
             {
+
                 button1.Enabled = true;
-                  
+                button2.Enabled = true;
+
+            }
+            else if (Login.perfilUsuario == 2) {
+                button2.Enabled = true;
+
+
             }
 
             if (frmLogin.logado == false) {

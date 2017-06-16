@@ -74,6 +74,7 @@
             // button2
             // 
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button2.Enabled = false;
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button2.Location = new System.Drawing.Point(274, 41);

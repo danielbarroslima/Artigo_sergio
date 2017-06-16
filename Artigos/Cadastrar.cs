@@ -75,16 +75,16 @@ namespace Artigos
                 switch (cmbPerfil.Text)
                 {
                     case "Autores":
-                        perfilSeleted = 3;
+                        perfilSeleted = 1;
                         break;
                     case "Revisores":
-                        perfilSeleted = 3;
+                        perfilSeleted = 2;
                         break;
                     case "Gerente":
                         perfilSeleted = 3;
                         break;
                     default:
-                        perfilSeleted = 3;
+                        perfilSeleted = 1;
                         break;
                 }
 

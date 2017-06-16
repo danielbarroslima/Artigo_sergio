@@ -68,7 +68,7 @@ namespace Artigos
 
         private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
-         
+
 
         }
 
@@ -199,7 +199,7 @@ namespace Artigos
             else if (rec == 1)
             {
                 lblMotivo.Text = "Motivo";
-                MessageBox.Show("Insira um motivo por favor ");
+             
                 txtfeedMot.Visible = true;
                 lblDe.Visible = true;
                 lblMotivo.Visible = true;
@@ -220,38 +220,44 @@ namespace Artigos
                 txtfeedMot.Visible = true;
                 lblDe.Visible = true;
                 lblMotivo.Visible = true;
-                btnOks.Text = "inf.Motivo";
+                btnOks.Text = "Informe Motivo";
 
 
             }
-            if (btnOks.Text=="inf.Motivo")
+            if (btnOks.Text== "Informe Motivo")
             {
-                MessageBox.Show("Insira um motivo por favor ");
-
-                StringBuilder sql = new StringBuilder();
-                sql.Append("Insert into revisores (art_revisado, revisor, motivo, dia)");
-                sql.Append("Values (@art_revisado, @revisor, @motivo, @dia )");
-                SqlCommand command = null;
-
-                try
+                if (txtfeedMot.Text == "")
                 {
-                    command = new SqlCommand(sql.ToString(), ConnectOpen);
-                    command.Parameters.Add(new SqlParameter("@art_revisado", lblIDart.Text));
-                    command.Parameters.Add(new SqlParameter("@revisor", lblidentRev.Text));
-                    command.Parameters.Add(new SqlParameter("@motivo", txtfeedMot.Text));
-                    command.Parameters.Add(new SqlParameter("@dia", locaDate));
-                    command.ExecuteNonQuery();
-
-                    MessageBox.Show("Motivo informado com sucesso !!!");
-                    Hide();
+                    MessageBox.Show("Falta o motivo!!!");
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Erro com seu motivo" + ex);
+                 
+
+                    StringBuilder sql = new StringBuilder();
+                    sql.Append("Insert into revisores (art_revisado, revisor, motivo, dia)");
+                    sql.Append("Values (@art_revisado, @revisor, @motivo, @dia )");
+                    SqlCommand command = null;
+
+                    try
+                    {
+                        command = new SqlCommand(sql.ToString(), ConnectOpen);
+                        command.Parameters.Add(new SqlParameter("@art_revisado", lblIDart.Text));
+                        command.Parameters.Add(new SqlParameter("@revisor", lblidentRev.Text));
+                        command.Parameters.Add(new SqlParameter("@motivo", txtfeedMot.Text));
+                        command.Parameters.Add(new SqlParameter("@dia", locaDate));
+                        command.ExecuteNonQuery();
+
+                        MessageBox.Show("Motivo informado com sucesso !!!");
+                        Hide();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro com seu motivo" + ex);
+
+                    }
 
                 }
-
-                saveFileDialog1.Filter = "Arquivo de texto | *txt";
 
             }
 

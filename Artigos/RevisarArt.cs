@@ -16,12 +16,14 @@ namespace Artigos
 {
     public partial class RevisarArt : Form
     {
+        DateTime locaDate = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time"));
+
         public bool logado = false;
         private Conexao conn;
         private SqlConnection ConnectOpen;
         public static string seleccionado { get; set; }
 
-        public int rec = 0, ac = 0;
+        public int rec = 0, ac = 0, cont=0;
         public string nota="", bom = "Bom", ruim = "A melhorar", mbom = "Muito bom" , aguarde="visto" ;
         public RevisarArt()
         {
@@ -64,6 +66,12 @@ namespace Artigos
 
         }
 
+        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+         
+
+        }
+
         private void btnListRev_Click(object sender, EventArgs e)
         {
             var listRevisao = new ListaRevisao();
@@ -93,7 +101,21 @@ namespace Artigos
 
         private void btnOks_Click(object sender, EventArgs e)
         {
-            if (ac == 0 && rec == 0)
+            if (lblIDart.Text=="...")
+            {
+                MessageBox.Show("Por favor escolha um artigo na lista acima !!");
+                rdAceite.Checked = false;
+                rdiorecusa.Checked = false;
+                rdiorecusa.Visible = true;
+                rdAceite.Visible = true;
+                lblEscolha.Visible = true;
+                lblaceitar.Visible = true;
+                lblrecusar.Visible = true;
+                rdio1.Checked = false;
+                rdio2.Checked = false;
+                rdio3.Checked = false;
+            }
+            else if (ac == 0 && rec == 0)
             {
                 MessageBox.Show("É preciso fazer uma escolha!!");
             }
@@ -104,20 +126,20 @@ namespace Artigos
                 lblDe.Visible = false;
                 lblMotivo.Visible = false;
             }
-            else if (ac > 0 && txttituloR.Text != "" && txtconteudoR.Text != "")
+            else if (ac>0 && txttituloR.Text != "" && txtconteudoR.Text != "")
             {
 
-
+                btnOks.Text = "Atualizar";
                 lblMotivo.Text = "Feedback";
-
                 MessageBox.Show("Insira um feedback por favor ");
                 txtfeedMot.Visible = true;
                 lblDe.Visible = true;
                 lblMotivo.Visible = true;
-                btnOks.Text = "Atualizar";
+                
 
                 if (lblMotivo.Text == "Feedback" && txtfeedMot.Text != "" && nota != "")
                 {
+                    cont = 1;
                     try
                     {
                         StringBuilder sql = new StringBuilder();
@@ -146,6 +168,32 @@ namespace Artigos
 
 
 
+
+                }
+            }
+            if (cont==1)
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.Append("Insert into revisores (art_revisado, revisor, motivo, dia)");
+                sql.Append("Values (@art_revisado, @revisor, @motivo, @dia )");
+                SqlCommand command = null;
+
+                try
+                {
+                    command = new SqlCommand(sql.ToString(), ConnectOpen);
+                    command.Parameters.Add(new SqlParameter("@art_revisado", lblIDart.Text));
+                    command.Parameters.Add(new SqlParameter("@revisor", lblidentRev.Text));
+                    command.Parameters.Add(new SqlParameter("@motivo", txtfeedMot.Text));
+                    command.Parameters.Add(new SqlParameter("@dia", locaDate));
+                    command.ExecuteNonQuery();
+
+                    MessageBox.Show("Motivo informado com sucesso !!!");
+                    Hide();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro com seu motivo" + ex);
+
                 }
             }
             else if (rec == 1)
@@ -156,9 +204,55 @@ namespace Artigos
                 lblDe.Visible = true;
                 lblMotivo.Visible = true;
             }
-            if (lblMotivo.Text == "Feedback" && txtfeedMot.Text!="" )
+            if (rdiorecusa.Checked==true && lblIDart.Text!="...")
             {
-            
+                rdAceite.Checked = false;
+                rdiorecusa.Checked = false;
+                rdiorecusa.Visible = false;
+                rdAceite.Visible = false;
+                lblEscolha.Visible = false;
+                lblaceitar.Visible = false;
+                lblrecusar.Visible = false;
+                rdio1.Visible = false;
+                rdio2.Visible = false;
+                rdio3.Visible = false;
+                lblMotivo.Text = "Motivo";
+                txtfeedMot.Visible = true;
+                lblDe.Visible = true;
+                lblMotivo.Visible = true;
+                btnOks.Text = "inf.Motivo";
+
+
+            }
+            if (btnOks.Text=="inf.Motivo")
+            {
+                MessageBox.Show("Insira um motivo por favor ");
+
+                StringBuilder sql = new StringBuilder();
+                sql.Append("Insert into revisores (art_revisado, revisor, motivo, dia)");
+                sql.Append("Values (@art_revisado, @revisor, @motivo, @dia )");
+                SqlCommand command = null;
+
+                try
+                {
+                    command = new SqlCommand(sql.ToString(), ConnectOpen);
+                    command.Parameters.Add(new SqlParameter("@art_revisado", lblIDart.Text));
+                    command.Parameters.Add(new SqlParameter("@revisor", lblidentRev.Text));
+                    command.Parameters.Add(new SqlParameter("@motivo", txtfeedMot.Text));
+                    command.Parameters.Add(new SqlParameter("@dia", locaDate));
+                    command.ExecuteNonQuery();
+
+                    MessageBox.Show("Motivo informado com sucesso !!!");
+                    Hide();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro com seu motivo" + ex);
+
+                }
+
+                saveFileDialog1.Filter = "Arquivo de texto | *txt";
+
             }
 
 

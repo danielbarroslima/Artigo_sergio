@@ -47,7 +47,11 @@ namespace Artigos
         }
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (rev == 1)
+            if (rdioPostar.Checked ==false && rdioUploadRev.Checked==false)
+            {
+                rdioPostar.Checked = true;
+            }
+            if (rdioUploadRev.Checked==true)
             {
 
                 
@@ -74,30 +78,34 @@ namespace Artigos
              }
             else
             {
-                //incluir o using System.Text
-                StringBuilder sql = new StringBuilder();
-                sql.Append("Insert into artigo (titulo , conteudo, feedback, autor, aceito)");
-                sql.Append("Values (@titulo, @conteudo, @feedback, @autor, @aceito )");
-                SqlCommand command = null;
-
-                try
+                if (txtTitulo.Text!=""&&txtConteudo.Text!="")
                 {
-                    command = new SqlCommand(sql.ToString(), ConnectOpen);
-                    command.Parameters.Add(new SqlParameter("@titulo", txtTitulo.Text));
-                    command.Parameters.Add(new SqlParameter("@conteudo", txtConteudo.Text));
-                    command.Parameters.Add(new SqlParameter("@feedback", aguarde));
-                    command.Parameters.Add(new SqlParameter("@autor", lblNomelog.Text));
-                    command.Parameters.Add(new SqlParameter("@aceito",aguarde));
-                    command.ExecuteNonQuery();
+                    //incluir o using System.Text
+                    StringBuilder sql = new StringBuilder();
+                    sql.Append("Insert into artigo (titulo , conteudo, feedback, autor, aceito)");
+                    sql.Append("Values (@titulo, @conteudo, @feedback, @autor, @aceito )");
+                    SqlCommand command = null;
 
-                    MessageBox.Show("Cadastrado com sucesso!");
-                    Hide();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro ao Inserir Artigo" + ex);
+                    try
+                    {
+                        command = new SqlCommand(sql.ToString(), ConnectOpen);
+                        command.Parameters.Add(new SqlParameter("@titulo", txtTitulo.Text));
+                        command.Parameters.Add(new SqlParameter("@conteudo", txtConteudo.Text));
+                        command.Parameters.Add(new SqlParameter("@feedback", aguarde));
+                        command.Parameters.Add(new SqlParameter("@autor", lblNomelog.Text));
+                        command.Parameters.Add(new SqlParameter("@aceito", aguarde));
+                        command.ExecuteNonQuery();
 
+                        MessageBox.Show("Cadastrado com sucesso!");
+                        Hide();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro ao Inserir Artigo" + ex);
+
+                    }
                 }
+              
             }
         }
 

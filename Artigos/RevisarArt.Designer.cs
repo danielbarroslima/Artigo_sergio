@@ -49,6 +49,7 @@
             this.lblDe = new System.Windows.Forms.Label();
             this.lblArti = new System.Windows.Forms.Label();
             this.lblIDart = new System.Windows.Forms.Label();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // lblRevise
@@ -255,6 +256,11 @@
             this.lblIDart.TabIndex = 30;
             this.lblIDart.Text = "...";
             // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
+            this.saveFileDialog1.HelpRequest += new System.EventHandler(this.btnListRev_Click);
+            // 
             // RevisarArt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -312,5 +318,6 @@
         private System.Windows.Forms.Label lblDe;
         private System.Windows.Forms.Label lblArti;
         private System.Windows.Forms.Label lblIDart;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
